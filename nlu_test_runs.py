@@ -1,5 +1,7 @@
 import argparse
 import os
+import requests
+import re
 # getting arguments 
 parser = argparse.ArgumentParser(description = "pass file")
 parser.add_argument("-f","--file",type = str,help = "directory")
@@ -93,7 +95,10 @@ def check_For_Errors(paths):
     for line in lines:
         print(line,flush = True)
     fout.close()
-os.system("wget http://setup.johnsnowlabs.com/colab.sh -O - | bash")
+
+data = str(requests.get("http://setup.johnsnowlabs.com/colab.sh").content)
+os.system(f"""python3.7 -m pip install spark-nlp=={re.findall(r'"(.*?)"',data)[0]}""")
+os.system(f"""python3.7 -m pip install pyspark=={re.findall(r'"(.*?)"',data)[1]}""")
 paths_For_ipynb = get_last_path(path,".ipynb")   
 make_Files(paths_For_ipynb)
 paths_For_txt = get_last_path(path,".txt")

@@ -9,7 +9,7 @@ RUN apt update \
 	&& apt install -y software-properties-common nano \
   
   	&& add-apt-repository ppa:deadsnakes/ppa \
-    
+    	
 	&& apt update -y \
   
 	&& apt install -y python3.7 \
@@ -22,8 +22,7 @@ RUN echo 'alias python=python3.7' >> ~/.bashrct
 # RUN export PYSPARK_PYTHON=/usr/bin/python3.7
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.7
-RUN python3.7 -m pip install  pyspark==3.0.3 spark-nlp==3.4.3 \
-	&& apt -y install git \
+RUN  apt -y install git \
  	&& git clone https://github.com/ahmedlone127/spark-nlp-workshop \
 	&& python3.7 -m pip install nbconvert \
  
