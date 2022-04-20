@@ -93,7 +93,7 @@ def check_For_Errors(paths):
     for line in lines:
         print(line,flush = True)
     fout.close()
-
+os.system("wget http://setup.johnsnowlabs.com/colab.sh -O - | bash")
 paths_For_ipynb = get_last_path(path,".ipynb")   
 make_Files(paths_For_ipynb)
 paths_For_txt = get_last_path(path,".txt")

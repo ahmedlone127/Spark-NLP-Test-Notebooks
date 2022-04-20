@@ -23,20 +23,13 @@ RUN echo 'alias python=python3.7' >> ~/.bashrct
 
 ENV PYSPARK_PYTHON=/usr/bin/python3.7
 RUN python3.7 -m pip install  pyspark==3.0.3 spark-nlp==3.4.3 \
-	&& python3.7 -m pip install pandas \
 	&& apt -y install git \
  	&& git clone https://github.com/ahmedlone127/spark-nlp-workshop \
 	&& python3.7 -m pip install nbconvert \
-   	&& python3.7 -m pip install wget \
-	&& python3.7 -m pip install matplotlib \
  
-	&& python3.7 -m pip install sklearn \
 	&& python3.7 -m pip install numpy \
  
-	&& python3.7 -m pip install seaborn \
 	&& apt -y install nano \
-	&& python3.7 -m pip install spacy\
-	&& python3.7 -m spacy download en_core_web_sm\
 	
 	&& apt-get install wget
 CMD ["python3.7", "nlu_test_runs.py","-f","/app/src/new/spark-nlp-workshop/jupyter/annotation/english/spark-nlp-basics/"]
